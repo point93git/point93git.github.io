@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="point — 성능 최적화 업무를 담당하는 프로페셔널 포트폴리오">
-  <title>point // Performance Optimization</title>
+  <meta name="description" content="point93 — 성능 최적화 업무를 담당하는 프로페셔널 포트폴리오">
+  <title>point93 // Performance Optimization</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <script src="game.js" defer></script>
+  <script src="airplane-game.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="point 홈">point<span aria-hidden="true">_</span></a>
+    <a class="brand" href="#home" aria-label="point93 홈">point93<span aria-hidden="true">_</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
       <a href="#home">Home</a>
@@ -25,30 +26,31 @@
   <main id="home">
     <section class="hero" aria-labelledby="hero-title">
       <p class="eyebrow">SYSTEM / PROFILE</p>
-      <h1 id="hero-title">point<span aria-hidden="true">_</span></h1>
+      <h1 id="hero-title">point93<span aria-hidden="true">_</span></h1>
       <p class="role">성능 최적화</p>
+      <p class="team">XR개발팀</p>
     </section>
 
-    <section id="about" class="content-section" aria-labelledby="about-title">
+    <section id="about" class="content-section about-section" aria-labelledby="about-title">
       <p class="eyebrow">01 / ABOUT</p>
       <h2 id="about-title">Built for the critical path.</h2>
-      <p class="placeholder">상세 소개는 [사람 확인 필요] 상태입니다.</p>
+      <p class="about-copy">Glasses로 여는 새로운 세상을 만들어갑니다</p>
+      <div class="about-visual" role="img" aria-label="AI Glasses로 새로운 세상을 바라보는 장면"></div>
     </section>
 
     <section id="work" class="content-section" aria-labelledby="work-title">
       <p class="eyebrow">02 / WORK</p>
       <h2 id="work-title">Performance, made visible.</h2>
       <div class="work-grid">
-        <article class="work-card"><h3>Projects</h3><p>[사람 확인 필요]</p></article>
-        <article class="work-card"><h3>Experience</h3><p>[사람 확인 필요]</p></article>
-        <article class="work-card"><h3>Research</h3><p>[사람 확인 필요]</p></article>
+        <article class="work-card"><h3>Projects</h3><p>AI Glasses</p></article>
+        <article class="work-card"><h3>Experience</h3><p>Powe/Performance optimization</p></article>
       </div>
     </section>
 
     <section id="contact" class="content-section" aria-labelledby="contact-title">
       <p class="eyebrow">03 / CONTACT</p>
       <h2 id="contact-title">Open channel.</h2>
-      <p class="placeholder">연락처는 [사람 확인 필요] 상태입니다.</p>
+      <p><a class="contact-link" href="https://www.samsung.com" target="_blank" rel="noopener noreferrer">www.samsung.com</a></p>
     </section>
 
     <section id="games" class="content-section games-section" aria-labelledby="games-title">
@@ -71,6 +73,24 @@
           <div><button type="button" data-direction="left" aria-label="왼쪽으로 이동">◀</button><button type="button" data-direction="down" aria-label="아래로 이동">▼</button><button type="button" data-direction="right" aria-label="오른쪽으로 이동">▶</button></div>
         </div>
         <p class="game-help">Arrow keys / WASD / touch controls · 적 3개를 피해 오래 생존하세요.</p>
+      </div>
+      <div class="airplane-shell" role="region" aria-label="비행기 게임">
+        <div class="game-status">
+          <span>DESTROYED <strong id="air-score">0</strong></span>
+          <span>HULL <strong id="air-health">■■■■</strong></span>
+          <span id="air-state">READY</span>
+        </div>
+        <canvas id="airplane-canvas" width="640" height="360" aria-label="비행기 슈팅 게임 화면"></canvas>
+        <div class="game-actions">
+          <button id="air-start" type="button">Start</button>
+          <button id="air-pause" type="button" disabled>Pause</button>
+          <button id="air-restart" type="button">Restart</button>
+        </div>
+        <div class="air-touch-controls" aria-label="비행기 모바일 게임 조작">
+          <div><button type="button" data-airplane-direction="up" aria-label="위로 이동">▲</button><button type="button" data-airplane-direction="down" aria-label="아래로 이동">▼</button></div>
+          <div><button type="button" data-airplane-direction="left" aria-label="왼쪽 이동">◀</button><button type="button" data-airplane-direction="fire" aria-label="발사">●</button><button type="button" data-airplane-direction="right" aria-label="오른쪽 이동">▶</button></div>
+        </div>
+        <p class="game-help">Arrow keys / WASD to move · Space to fire · 적 5개 격파 시 무기 업그레이드</p>
       </div>
     </section>
   </main>

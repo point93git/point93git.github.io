@@ -16,6 +16,7 @@
   const cellSize = canvas.width / columns;
   const tickRate = 140;
   const enemyCount = 3;
+  const enemyWarningDistance = 4;
   const bestKey = 'point-worm-best-score';
   const directions = {
     up: { x: 0, y: -1 },
@@ -49,6 +50,7 @@
   }
 
   function samePosition(first, second) { return first.x === second.x && first.y === second.y; }
+  function distance(first, second) { return Math.abs(first.x - second.x) + Math.abs(first.y - second.y); }
   function randomCell() { return { x: Math.floor(Math.random() * columns), y: Math.floor(Math.random() * rows) }; }
   function occupied(position) {
     return worm.some((segment) => samePosition(segment, position)) || enemies.some((enemy) => samePosition(enemy.position, position));
@@ -164,6 +166,20 @@
     context.fillRect(position.x * cellSize + inset, position.y * cellSize + inset, cellSize - inset * 2, cellSize - inset * 2);
   }
 
+  function drawEnemy(enemy) {
+    const near = distance(enemy.position, worm[0]) <= enemyWarningDistance;
+    const blinking = near && Math.floor(Date.now() / 180) % 2 === 0;
+    if (blinking) {
+      context.save();
+      context.shadowColor = '#ffb3bd';
+      context.shadowBlur = 14;
+      drawCell(enemy.position, '#ffb3bd', 0);
+      context.restore();
+    } else {
+      drawCell(enemy.position, '#ff1f3d', 2);
+    }
+  }
+
   function draw() {
     context.fillStyle = '#050101';
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -171,7 +187,7 @@
     for (let x = 0; x <= columns; x += 1) { context.beginPath(); context.moveTo(x * cellSize, 0); context.lineTo(x * cellSize, canvas.height); context.stroke(); }
     for (let y = 0; y <= rows; y += 1) { context.beginPath(); context.moveTo(0, y * cellSize); context.lineTo(canvas.width, y * cellSize); context.stroke(); }
     drawCell(food, '#ff6576', 3);
-    enemies.forEach((enemy) => drawCell(enemy.position, '#ff1f3d', 2));
+    enemies.forEach(drawEnemy);
     worm.forEach((segment, index) => drawCell(segment, index === 0 ? '#f8e9eb' : '#ff6576', 1));
     if (state === 'ready' || state === 'paused' || state === 'over') {
       context.fillStyle = 'rgba(5, 1, 1, 0.68)';
@@ -184,6 +200,7 @@
   }
 
   document.addEventListener('keydown', (event) => {
+    if (document.querySelector('#air-state')?.textContent.startsWith('RUNNING')) return;
     if (keyDirections[event.key]) { event.preventDefault(); setDirection(keyDirections[event.key]); }
     if (event.key === ' ' && state === 'running') pauseGame();
   });

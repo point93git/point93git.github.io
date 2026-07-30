@@ -43,8 +43,14 @@ main { margin: 0 auto; max-width: 1100px; padding: 0 5vw 8rem; }
 .eyebrow { color: var(--red); font: 0.75rem monospace; letter-spacing: 0.18em; }
 h1 { font: clamp(4rem, 16vw, 11rem)/0.9 monospace; letter-spacing: -0.08em; margin: 1rem 0; text-shadow: 0 0 36px rgba(255, 31, 61, 0.48); }
 h2 { font-size: clamp(1.8rem, 4vw, 3.2rem); margin: 0.5rem 0 1rem; }
-.role, .placeholder { color: var(--muted); }
+.role, .team, .placeholder { color: var(--muted); }
+.team { color: var(--red-soft); font: 0.9rem monospace; letter-spacing: 0.12em; margin: -0.5rem 0 0; }
 .content-section { border-top: 1px solid var(--line); padding: 5rem 0; }
+.about-section { overflow: hidden; position: relative; }
+.about-copy { color: var(--ink); font-size: clamp(1.3rem, 3vw, 2.2rem); max-width: 34rem; position: relative; z-index: 1; }
+.about-visual { background: linear-gradient(90deg, rgba(5, 5, 5, 0.08), rgba(5, 5, 5, 0.5)), url("assets/ai-glasses-world.png") center / cover; border: 1px solid var(--line); height: clamp(230px, 34vw, 420px); margin-top: 2rem; min-height: 230px; }
+.contact-link { color: var(--red-soft); text-decoration: none; }
+.contact-link:hover, .contact-link:focus-visible { color: var(--ink); }
 .work-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
 .work-card { background: var(--panel); border: 1px solid var(--line); min-height: 150px; padding: 1.25rem; }
 .work-card h3 { color: var(--red-soft); font: 0.85rem monospace; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -59,6 +65,11 @@ h2 { font-size: clamp(1.8rem, 4vw, 3.2rem); margin: 0.5rem 0 1rem; }
 .game-actions button:disabled { cursor: not-allowed; opacity: 0.45; }
 .touch-controls { display: none; }
 .game-help { color: var(--muted); font-size: 0.75rem; margin: 0; }
+.airplane-shell { background: linear-gradient(180deg, rgba(255, 31, 61, 0.08), transparent), var(--panel); border: 1px solid var(--line); display: grid; gap: 1rem; margin-top: 2rem; max-width: 50vw; padding: 1rem; }
+#airplane-canvas { background: #07020a; border: 1px solid var(--line); display: block; height: auto; max-width: 100%; width: 100%; }
+.air-touch-controls { display: none; text-align: center; }
+.air-touch-controls > div { display: flex; gap: 0.75rem; justify-content: center; margin-top: 0.5rem; }
+.air-touch-controls button { background: transparent; border: 1px solid var(--line); color: var(--ink); font: 0.8rem monospace; min-width: 3.5rem; padding: 0.6rem; }
 :focus-visible { outline: 2px solid var(--red-soft); outline-offset: 4px; }
 @media (max-width: 700px) {
   .menu-toggle { background: none; border: 1px solid var(--line); color: var(--ink); display: block; font: 0.8rem monospace; padding: 0.55rem 0.7rem; }
@@ -67,6 +78,8 @@ h2 { font-size: clamp(1.8rem, 4vw, 3.2rem); margin: 0.5rem 0 1rem; }
   .site-nav a { padding: 0.7rem 1rem; }
   .work-grid { grid-template-columns: 1fr; }
   .game-shell { max-width: 100%; min-height: 180px; }
+  .airplane-shell { max-width: 100%; }
   .touch-controls { display: block; }
+  .air-touch-controls { display: block; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
